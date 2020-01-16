@@ -1,20 +1,6 @@
 <template>
   <div class="app" :class="mode">
-
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <router-link to="/" class="nav-link">Home</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/create" class="nav-link">Create Post</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/posts" class="nav-link">Posts</router-link>
-      </li>
-    </ul>
-    <br/>
-    <h1>Hello World</h1>
-    <br />
+    <Header :mode="mode" @toggle="toggle"/>
     <transition name="fade">
       <router-view></router-view>
     </transition>
@@ -23,31 +9,43 @@
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
-.app{
-    width: 100vw;
-    min-height: 100vh;
-    background: #F3F3F3;
-    color: #15202B;
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  background: #f3f3f3;
+  color: #15202b;
 }
 .dark {
-    background-color: #192734;
-    color: #f3f3f3;
+  background-color: #192734;
+  color: #f3f3f3;
 }
 </style>
 
 <script>
+import Header from "./components/Header";
 export default {
   name: "app",
   data() {
     return {
-      mode: "dark"
+      mode: "light"
     };
   },
-  components: {}
+  components: {
+    Header
+  },
+  methods: {
+      toggle() {
+         if(this.mode === 'dark') {
+             this.mode = "light"
+         } else {
+             this.mode = "dark"
+         }
+      }
+  }
 };
 </script>
