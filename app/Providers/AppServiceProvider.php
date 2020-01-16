@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //will prevent database tears
+        \Schema::defaultStringLength(191);
     }
 }

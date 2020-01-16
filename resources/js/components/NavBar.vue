@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <navbar>
     <h2>{{ mode }} Mode</h2>
     <!------Toggle------>
     <Toggle :mode="mode" @toggle="$emit('toggle')" />
@@ -8,14 +8,29 @@
       <router-link to="/create" class="nav-link">Create Post</router-link>
       <router-link to="/posts" class="nav-link">Posts</router-link>
     </nav>
-  </header>
+  </navbar>
 </template>
 <script>
-import Toggle from './Toggle'
+import Toggle from "./Toggle";
 export default {
-  props: ["mode"],
-  components:{
-      Toggle
+  name: "navbar",
+  props: ["mode", "app"],
+  data() {
+    return {};
+  },
+  methods: {
+    logout() {
+      this.app.req.post("auth/logout").then(() => {
+        this.app.user = null;
+        this.$router.push("/login");
+      });
+    }
+  },
+  components: {
+    Toggle
   }
 };
 </script>
+
+
+
