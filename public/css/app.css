@@ -11533,7 +11533,6 @@ input:checked + .toggler::before {
   padding: 15px;
   font-size: 15px;
   margin: 0px;
-  background: #ffffff;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }

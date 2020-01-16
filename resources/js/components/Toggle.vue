@@ -5,6 +5,7 @@
             type="checkbox"
             :checked="(mode === 'dark') ? 'checked' : false"
             @change="$emit('toggle')"/>
+
       <span class="toggler round"></span>
     </label>
   </div>
