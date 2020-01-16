@@ -6781,7 +6781,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n    font-family: 'Roboto', sans-serif;\n}\n.app{\n    width: 100vw;\n    min-height: 100vh;\n    background: #F3F3F3;\n    color: #15202B;\n}\n.dark {\n    background-color: #192734;\n    color: #f3f3f3;\n}\n", ""]);
+exports.push([module.i, "\n* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    font-family: 'Roboto', sans-serif;\n}\n.app{\r\n    width: 100vw;\r\n    min-height: 100vh;\r\n    background: #F3F3F3;\r\n    color: #15202B;\n}\n.dark {\r\n    background-color: #192734;\r\n    color: #f3f3f3;\n}\r\n", ""]);
 
 // exports
 
@@ -54256,8 +54256,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\Users\stevo\Documents\sites\faq-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\Users\stevo\Documents\sites\faq-app\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\stevo\Documents\sites\faq-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\stevo\Documents\sites\faq-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
