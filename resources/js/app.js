@@ -9,19 +9,14 @@ Vue.use(VueRouter);
 
 import VueAxios from 'vue-axios';
 import axios from 'axios';
-Vue.use(VueAxios, axios);
 
 import App from './App.vue';
-
-
-
+Vue.use(VueAxios, axios);
 
 import HomeComponent from './components/HomeComponent.vue';
 import CreateComponent from './components/CreateComponent.vue';
 import IndexComponent from './components/IndexComponent.vue';
 import EditComponent from './components/EditComponent.vue';
-
-Vue.component('spinner', require('vue-simple-spinner'));
 
 const routes = [
   {
@@ -46,9 +41,5 @@ const routes = [
   }
 ];
 
-const router = new VueRouter({
-    mode: 'history',
-    routes: routes
-});
-const app = new Vue(Vue.util.extend({ router }, App))
- .$mount('#app');
+const router = new VueRouter({ mode: 'history', routes: routes});
+const app = new Vue(Vue.util.extend({ router }, App)).$mount('#app');
