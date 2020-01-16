@@ -6,3 +6,59 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body{
+    position: relative !important;
+
+}
+/*ACCORDION*/
+.accordions {
+    display: block;
+    width:100%;
+    max-width: 768px;
+    margin: 15px auto;
+    padding: 0;
+    //position: absolute;
+}
+
+.accordions .question{
+    padding:15px 25px;
+    color: #3c3c3c;
+    border: 1px solid #d5d5d5;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 8px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.accordions .answer{
+    box-shadow: 0 0 25px #ddd;
+    padding: 15px;
+    font-size: 15px;
+    margin: 0px;
+    background: #ffffff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.slide-fade-enter-active{
+    transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-leave-active{
+    transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter,
+.slide-fade-leave-to{
+    opacity: 0;
+}
+
+
+/*END ACCORDION*/
+
+/*DARK MODE*/
+
+/*END DARK MODE*/
