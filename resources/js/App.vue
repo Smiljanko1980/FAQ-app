@@ -6,26 +6,6 @@
     </transition>
   </div>
 </template>
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-}
-.app {
-  width: 100vw;
-  min-height: 100vh;
-  background: #f3f3f3;
-  color: #15202b;
-}
-.dark {
-  background-color: #192734;
-  color: #f3f3f3;
-}
-</style>
-
 <script>
 import Header from "./components/Header";
 export default {

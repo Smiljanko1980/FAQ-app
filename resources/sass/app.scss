@@ -1,41 +1,153 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
-body{
+body {
     position: relative !important;
-
 }
-/*ACCORDION*/
+/*****************THEHE SWITCHING************************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+.app {
+    width: 100vw;
+    min-height: 100vh;
+    background: #f3f3f3;
+    color: #15202b;
+    transition: background 0.3s ease-in-out;
+}
+.dark {
+    background-color: #192734;
+    color: #f3f3f3;
+}
+/*HEADER THEME SWITCHING*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 25px;
+    height: 60px;
+    background: #c3c3c3;
+    transition: background 0.3s ease-in-out;
+}
+.dark header {
+    background: #15202b;
+}
+header h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+header nav {
+    display: flex;
+    height: 60px;
+}
+header nav .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    color: #fff;
+}
+header nav .nav-link:hover {
+    background: #b0b0b0;
+}
+.dark header nav .nav-link:hover {
+    background: #101520;
+}
+.light header nav .nav-link {
+    color: #101520;
+}
+/*END HEADER THEME SWITCHING*/
+
+/*TOGGLE THEME SWITCHING*/
+.toggle {
+    position: relative;
+    display: inline-block;
+
+    width: 60px;
+    height: 34px;
+}
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.toggler {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: #15202b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+.toggler::before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background: #fff;
+    -webkit-transition: 0.4;
+    transition: 0.4s;
+}
+input:checked + .toggler {
+    background: #2196f3;
+}
+input:focus + .toggler {
+    box-shadow: 0 0 2px #2196f3;
+}
+input:checked + .toggler::before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+.toggler.round {
+    border-radius: 34px;
+}
+.toggler.round::before {
+    border-radius: 50%;
+}
+/*END TOGGLE THEME SWITCHING*/
+
+/***************END THEME SWITCHING**********************/
+
+/********************  ACCORDION  **********************/
 .accordions {
     display: block;
-    width:100%;
+    width: 100%;
     max-width: 768px;
     margin: 15px auto;
     padding: 0;
     //position: absolute;
 }
 
-.accordions .question{
-    padding:15px 25px;
+.accordions .question {
+    padding: 15px 25px;
     color: #3c3c3c;
     border: 1px solid #d5d5d5;
     text-align: center;
     background: #ffffff;
     border-radius: 8px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    /* border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px; */
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     text-transform: uppercase;
 }
-.accordions .answer{
+.accordions .answer {
     box-shadow: 0 0 25px #ddd;
     padding: 15px;
     font-size: 15px;
@@ -44,21 +156,20 @@ body{
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-
-.slide-fade-enter-active{
-    transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+.app.dark .accordions dd.answer{
+    background: #3c3c3c;
 }
-.slide-fade-leave-active{
-    transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+
+.slide-fade-enter-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter,
-.slide-fade-leave-to{
+.slide-fade-leave-to {
     opacity: 0;
 }
 
 
-/*END ACCORDION*/
-
-/*DARK MODE*/
-
-/*END DARK MODE*/
+/******************  END ACCORDION  ********************/
