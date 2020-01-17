@@ -2474,7 +2474,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.getUser().then(function (res) {
       _this.whole_name = res.user.name;
-      _this.username = res.user.mail;
+      _this.username = res.user.username;
       return res;
     });
     return {

@@ -25,7 +25,7 @@ export default {
   data() {
     this.getUser().then(res => {
       this.whole_name = res.user.name;
-      this.username = res.user.mail;
+      this.username = res.user.username;
 
       return res;
     });
