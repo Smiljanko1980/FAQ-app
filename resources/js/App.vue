@@ -33,17 +33,7 @@ export default {
          } else {
              this.mode = "dark"
          }
-      }/* ,
-      init() {
-          this.loading= true;
-          let uri = "http://127.0.0.1:8000/auth/ini";
-          this.axios.get('/auth/init').then(response=> {
-              this.user = response.data.user;
-              this.loading = false;
-              this.initiated = true;
-              console.log(user);
-          })
-      } */
+      }
   }
 };
 </script>

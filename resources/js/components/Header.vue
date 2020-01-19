@@ -1,24 +1,15 @@
 <template>
   <header>
-    <h2>{{ mode }} Mode</h2>
     <!------Toggle------>
     <Toggle :mode="mode" @toggle="$emit('toggle')" />
     <nav>
-          <router-link v-if="auth==''" to="/" class="nav-link">Home</router-link>
+      <router-link to="/" class="nav-link">FAQ</router-link>
 
-          <router-link v-if="auth=='loggedin'" to="/create" class="nav-link">Create FAQ</router-link>
+      <router-link to="/create" class="nav-link">Create FAQ</router-link>
 
-          <router-link v-if="auth==''" to="/posts" class="nav-link">FAQs</router-link>
+      <router-link to="/login" class="nav-link">Login</router-link>
 
-          <router-link v-if="auth==''" to="/login" class="nav-link">Login</router-link>
-
-          <router-link v-if="auth==''" to="/register" class="nav-link">Register</router-link>
-
-          <router-link v-if="auth=='loggedin'" to="/profile" class="nav-link">Profile</router-link>
-          <h1 v-if="auth=='loggedin'">Hey</h1>
-          <a v-if="auth=='loggedin'" href="" class="nav-link">Logout</a>
-
-
+      <router-link to="/register" class="nav-link">Register</router-link>
       <!--
       <a v-else @click="logout" href="javascript:;" class="nav-link">Logout</a>
       -->

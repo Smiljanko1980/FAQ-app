@@ -34,7 +34,7 @@
 </template>
 <script>
 import axios from "axios";
-import EventBus from "./EventBus";
+//import EventBus from "./EventBus";
 export default {
   data() {
     return {
@@ -59,10 +59,10 @@ export default {
           //console.log(err);
         });
       this.emitMethod();
-    },
+    },/*
     emitMethod() {
       EventBus.$emit("logged-in", "loggedin");
-    }
+    } */
   }
 };
 </script>

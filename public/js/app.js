@@ -1969,18 +1969,6 @@ __webpack_require__.r(__webpack_exports__);
         this.mode = "dark";
       }
     }
-    /* ,
-    init() {
-       this.loading= true;
-       let uri = "http://127.0.0.1:8000/auth/ini";
-       this.axios.get('/auth/init').then(response=> {
-           this.user = response.data.user;
-           this.loading = false;
-           this.initiated = true;
-           console.log(user);
-       })
-    } */
-
   }
 });
 
@@ -1995,11 +1983,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2140,15 +2123,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2206,9 +2180,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      posts: {}
+    };
+  },
+  created: function created() {
+    this.AddPost();
+  },
+  methods: {
+    AddPost: function AddPost() {
+      var _this = this;
+
+      axios.get("/api/posts").then(function (response) {
+        return _this.posts = response.data.posts;
+      });
+    },
+    deletePost: function deletePost(id) {
+      var _this2 = this;
+
+      this.axios["delete"]("/api/post/delete/".concat(id)).then(function (response) {
+        _this2.posts.splice(_this2.posts.indexOf(id), 1);
+
+        _this2.AddPost();
+      });
+    }
   }
 });
 
@@ -2284,7 +2290,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    //let uri = '127.0.0.1/api/posts';
     this.AddPost();
   },
   methods: {
@@ -2298,8 +2303,7 @@ __webpack_require__.r(__webpack_exports__);
     deletePost: function deletePost(id) {
       var _this2 = this;
 
-      var uri = "http://127.0.0.1:8000/api/post/delete/".concat(id);
-      this.axios["delete"](uri).then(function (response) {
+      this.axios["delete"]("/api/post/delete/".concat(id)).then(function (response) {
         _this2.posts.splice(_this2.posts.indexOf(id), 1);
 
         _this2.AddPost();
@@ -2365,7 +2369,6 @@ var EventBus = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _EventBus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventBus */ "./resources/js/components/auth/EventBus.vue");
 //
 //
 //
@@ -2400,7 +2403,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+ //import EventBus from "./EventBus";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2426,10 +2429,12 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {//console.log(err);
       });
       this.emitMethod();
-    },
-    emitMethod: function emitMethod() {
-      _EventBus__WEBPACK_IMPORTED_MODULE_1__["default"].$emit("logged-in", "loggedin");
     }
+    /*
+    emitMethod() {
+    EventBus.$emit("logged-in", "loggedin");
+    } */
+
   }
 });
 
@@ -38019,24 +38024,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("Create A Post")]),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.addPost($event)
-          }
-        }
-      },
-      [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6 mt-5 mx-auto" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.addPost($event)
+              }
+            }
+          },
+          [
+            _c("h1", { staticClass: "h3 mb-3 font-weight-normal" }, [
+              _vm._v("Create new FAQ")
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Post Title:")]),
+              _c("label", [_vm._v("Create Question")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -38059,14 +38066,10 @@ var render = function() {
                   }
                 }
               })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Post Body:")]),
+              _c("label", [_vm._v("Create Answer")]),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
@@ -38089,27 +38092,18 @@ var render = function() {
                   }
                 }
               })
+            ]),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-lg btn-primary btn-block" }, [
+              _vm._v("Create FAQ")
             ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _vm._m(0)
-      ]
-    )
+          ]
+        )
+      ])
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Create")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38245,8 +38239,6 @@ var render = function() {
   return _c(
     "header",
     [
-      _c("h2", [_vm._v(_vm._s(_vm.mode) + " Mode")]),
-      _vm._v(" "),
       _c("Toggle", {
         attrs: { mode: _vm.mode },
         on: {
@@ -38259,61 +38251,27 @@ var render = function() {
       _c(
         "nav",
         [
-          _vm.auth == ""
-            ? _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: "/" } },
-                [_vm._v("Home")]
-              )
-            : _vm._e(),
+          _c("router-link", { staticClass: "nav-link", attrs: { to: "/" } }, [
+            _vm._v("FAQ")
+          ]),
           _vm._v(" "),
-          _vm.auth == "loggedin"
-            ? _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: "/create" } },
-                [_vm._v("Create FAQ")]
-              )
-            : _vm._e(),
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: "/create" } },
+            [_vm._v("Create FAQ")]
+          ),
           _vm._v(" "),
-          _vm.auth == ""
-            ? _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: "/posts" } },
-                [_vm._v("FAQs")]
-              )
-            : _vm._e(),
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: "/login" } },
+            [_vm._v("Login")]
+          ),
           _vm._v(" "),
-          _vm.auth == ""
-            ? _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: "/login" } },
-                [_vm._v("Login")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.auth == ""
-            ? _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: "/register" } },
-                [_vm._v("Register")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.auth == "loggedin"
-            ? _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: "/profile" } },
-                [_vm._v("Profile")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.auth == "loggedin" ? _c("h1", [_vm._v("Hey")]) : _vm._e(),
-          _vm._v(" "),
-          _vm.auth == "loggedin"
-            ? _c("a", { staticClass: "nav-link", attrs: { href: "" } }, [
-                _vm._v("Logout")
-              ])
-            : _vm._e()
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: "/register" } },
+            [_vm._v("Register")]
+          )
         ],
         1
       )
@@ -38343,28 +38301,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "home-container" },
+      [
+        _c("h1", [_vm._v("Check out all the FAQS")]),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          { staticClass: "btn btn-primary", attrs: { to: { name: "create" } } },
+          [_vm._v("Create Post")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "accordions" },
+          _vm._l(_vm.posts, function(post) {
+            return _c("dl", { key: post.id }, [
+              _c(
+                "dt",
+                {
+                  staticClass: "question",
+                  on: {
+                    click: function($event) {
+                      post.open = !post.open
+                    }
+                  }
+                },
+                [_c("strong", [_vm._v(_vm._s(post.title))])]
+              ),
+              _vm._v(" "),
+              !post.open
+                ? _c(
+                    "dd",
+                    { staticClass: "answer" },
+                    [
+                      _vm._v(
+                        "\n          " + _vm._s(post.body) + "\n          "
+                      ),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: {
+                            to: { name: "edit", params: { id: post.id } }
+                          }
+                        },
+                        [_vm._v("Edit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.deletePost(post.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Delete")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ])
+          }),
+          0
+        )
+      ],
+      1
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Home Component")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm._v(
-              "\n                I'm the Home Component component.\n            "
-            )
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

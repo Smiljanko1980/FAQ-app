@@ -65,6 +65,13 @@ header nav .nav-link:hover {
 .light header nav .nav-link {
     color: #101520;
 }
+
+
+.nav-link.router-link-exact-active.router-link-active{
+    background: grey;
+    border-radius: 5px;
+    border: solid 1px blue;
+}
 /*END HEADER THEME SWITCHING*/
 
 /*TOGGLE THEME SWITCHING*/
@@ -156,7 +163,7 @@ input:checked + .toggler::before {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-.app.dark .accordions dd.answer{
+.app.dark .accordions dd.answer {
     background: #3c3c3c;
 }
 
@@ -171,5 +178,30 @@ input:checked + .toggler::before {
     opacity: 0;
 }
 
-
 /******************  END ACCORDION  ********************/
+.home-container {
+    display: block;
+    width: 100%;
+    max-width: 768px;
+    margin: 15px auto;
+    padding: 0;
+}
+
+@media screen and (max-width: 1020px) {
+    /* Large Desktop */
+}
+@media screen and (max-width: 840px) {
+    /* tablet */
+    .home-container {
+        width: 80%;
+        font-size: 12px;
+    }
+    /* tablet */
+}
+@media screen and (max-width: 480px) {
+    /* mobile */
+    .home-container {
+        width: 70%;
+        font-size: 12px;
+    }
+}
