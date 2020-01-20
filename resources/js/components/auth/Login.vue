@@ -5,13 +5,13 @@
         <form v-on:submit.prevent="login">
           <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
           <div class="form-group">
-            <label for="username" class="username">Username</label>
+            <label for="email" class="email">Email</label>
             <input
-              type="username"
-              v-model="username"
+              type="email"
+              v-model="email"
               class="form-control"
-              name="username"
-              placeholder="Enter Username"
+              name="email"
+              placeholder="Enter Email"
             />
           </div>
 
@@ -37,28 +37,21 @@ import axios from "axios";
 export default {
   data() {
     return {
-      username: '',
+      email: '',
       password: ''
     };
   },
   methods: {
-    login() {
-      axios
-        .post("/api/login", {
-          username: this.username,
-          password: this.password
+     login: function () {
+        const email = this.email
+        const password = this.password
+        this.$store.dispatch('login', { email, password }).then(() => {
+            this.$router.push('/');
+            location.reload();
         })
-        .then(res => {
-          localStorage.setItem("usertoken", res.data.token);
-          this.username = '',
-          this.password = '';
-          this.$router.push({ name: "posts" });
-        })
-        .catch(err => {
-          //console.log(err);
-        });
-      this.emitMethod();
-    }
+        browser.reload();
+      }
+
   }
 };
 </script>

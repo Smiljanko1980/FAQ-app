@@ -39,7 +39,7 @@
       },
       methods: {
         updatePost() {this.axios.post(`/api/post/update/${this.$route.params.id}`, this.post).then((response) => {
-            this.$router.push({name: 'posts'});
+            this.$router.push('/home');
           });
         }
       }

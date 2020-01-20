@@ -3,48 +3,53 @@
     <div class="row">
       <div class="col-md-6 mt-5 mx-auto">
         <form v-on:submit.prevent="register">
-          <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+          <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
           <div class="form-group">
-            <label for="first_name">First Name</label>
+            <label for="name">Name:</label>
             <input
-              type="first_name"
-              v-model="first_name"
+              type="name"
               class="form-control"
-              name="first_name"
+              name="name"
               placeholder="Enter First Name"
+              v-model="name"
+              required
+              autofocus
             />
           </div>
-
-          <div class="form-group">
-            <label for="last_name">Last Name</label>
+           <div class="form-group">
+            <label for="email">E-Mail Address:</label>
             <input
-              type="last_name"
-              v-model="last_name"
+              type="email"
+              v-model="email"
+              required
               class="form-control"
-              name="last_name"
-              placeholder="Enter Last Name"
+              name="email"
+              placeholder="Enter Email:"
+
             />
           </div>
 
           <div class="form-group">
-            <label for="username">Username</label>
+            <label for="new-password">Password</label>
             <input
-              type="username"
-              v-model="username"
-              class="form-control"
-              name="username"
-              placeholder="Enter Username"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
+            type="new-password"
               v-model="password"
+              required
               class="form-control"
               name="password"
               placeholder="Enter Password"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password_confirmation">Confirm Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password_confirmation"
+              placeholder="Confirm Password"
+              v-model="password_confirmation"
+              required
             />
           </div>
 
@@ -55,32 +60,31 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
-      first_name: "",
-      last_name: "",
-      username: "",
-      password: ""
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+      is_admin: null
     };
   },
   methods: {
-    register() {
-      axios
-        .post("/api/register", {
-          name: this.first_name + " " + this.last_name,
-          username: this.username,
-          password: this.password
+    register: function() {
+      let data = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        is_admin: this.is_admin
+      };
+      this.$store
+        .dispatch("register", data)
+        .then(() =>{
+             this.$router.push("/login")
         })
-        .then(response => {
-          //console.log(response);
-          this.$router.push({ name: "Login" });
-        })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch(err => console.log(err))
     }
-     }
+  }
 };
 </script>

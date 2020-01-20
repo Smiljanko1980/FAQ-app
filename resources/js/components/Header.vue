@@ -3,16 +3,17 @@
     <!------Toggle------>
     <Toggle :mode="mode" @toggle="$emit('toggle')" />
     <nav>
-      <router-link to="/" class="nav-link">FAQ</router-link>
+      <router-link to="/" class="nav-link" >FAQ</router-link>
 
-      <router-link to="/create" class="nav-link">Create FAQ</router-link>
+      <router-link to="/create" class="nav-link" v-if="isLoggedIn" >Create FAQ</router-link>
 
-      <router-link to="/login" class="nav-link">Login</router-link>
+      <router-link to="/login" class="nav-link" v-if="!isLoggedIn">Login</router-link>
 
-      <router-link to="/register" class="nav-link">Register</router-link>
-      <!--
-      <a v-else @click="logout" href="javascript:;" class="nav-link">Logout</a>
-      -->
+      <router-link to="/register" class="nav-link" v-if="!isLoggedIn">Register</router-link>
+
+     <!--  <span><a @click="logout">Logout</a></span> -->
+
+      <a v-if="isLoggedIn" @click="logout" class="nav-link">Logout</a>
     </nav>
   </header>
 </template>
@@ -21,19 +22,37 @@ import Toggle from "./Toggle";
 import EventBus from "./auth/EventBus";
 export default {
   props: ["mode", "app"],
-  components: {
+components: {
     Toggle
   },
+  created: function() {
+    this.$http.interceptors.response.use(undefined, function(err) {
+      return new Promise(function(resolve, reject) {
+        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+          this.$store.dispatch(logout);
+        }
+        throw err;
+      });
+    });
+  },
+
+  computed: {
+    isLoggedIn: function() {
+      return this.$store.getters.isLoggedIn;
+    }
+  } /*
   data() {
     return {
       auth: "",
       user: ""
     };
-  },
+  }, */,
   methods: {
-    logout() {
-
-      localStorage.removeItem("usertoken");
+    logout: function() {
+      this.$store.dispatch("logout").then(() => {
+        this.$router.push("/");
+        location.reload();
+      });
     }
   }
 };
