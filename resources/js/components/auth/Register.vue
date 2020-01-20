@@ -56,7 +56,6 @@
 </template>
 <script>
 import axios from "axios";
-import EventBus from "./EventBus";
 export default {
   data() {
     return {

@@ -2,7 +2,7 @@
 <template>
   <div>
     <div class="home-container">
-      <h1 >Check out all the FAQS</h1>
+      <h1 >Check all FAQS</h1>
       <router-link :to="{ name: 'create' }" class="btn btn-primary">Create Post</router-link>
       <div class="accordions">
         <dl v-for="post in posts" :key="post.id">

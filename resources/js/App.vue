@@ -15,12 +15,6 @@ export default {
   data() {
     return {
       mode: "light",
-      user:  null,
-      loading: false,
-      initiated: false,
-      /* req: axios.create({
-          baseUrl: BASE_URL
-      }) */
     };
   },
   components: {

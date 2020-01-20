@@ -32,19 +32,9 @@ export default {
   },
   methods: {
     logout() {
-      /*
-      this.axios.post("auth/logout", { baseURL: BASE_URL }).then(() => {
-        this.app.user = null;
-        this.$router.push("/login");
-      }); */
 
       localStorage.removeItem("usertoken");
     }
-  },
-  mounted() {
-    EventBus.$on("logged-in", status => {
-      this.auth = status;
-    });
   }
 };
 </script>

@@ -33,16 +33,12 @@
           post: {}
         }
       },
-      created() {
-   //let uri = `http://vuelaravelcrud.test/api/post/edit/${this.$route.params.id}`;
-        this.axios.get(`/api/post/edit/${this.$route.params.id}`).then((response) => {
+      created() {this.axios.get(`/api/post/edit/${this.$route.params.id}`).then((response) => {
             this.post = response.data;
         });
       },
       methods: {
-        updatePost() {
-          //let uri = `http://vuelaravelcrud.test/api/post/update/${this.$route.params.id}`;
-          this.axios.post(`/api/post/update/${this.$route.params.id}`, this.post).then((response) => {
+        updatePost() {this.axios.post(`/api/post/update/${this.$route.params.id}`, this.post).then((response) => {
             this.$router.push({name: 'posts'});
           });
         }

@@ -11442,6 +11442,11 @@ header nav .nav-link:hover {
   border: solid 1px blue;
 }
 
+nav a.nav-link {
+  font-size: 15px;
+  font-weight: bold;
+}
+
 /*END HEADER THEME SWITCHING*/
 
 /*TOGGLE THEME SWITCHING*/
@@ -11568,7 +11573,7 @@ input:checked + .toggler::before {
   display: block;
   width: 100%;
   max-width: 768px;
-  margin: 15px auto;
+  margin: 10px auto;
   padding: 0;
 }
 
@@ -11593,6 +11598,11 @@ input:checked + .toggler::before {
   .home-container {
     width: 70%;
     font-size: 12px;
+  }
+
+  nav a.nav-link {
+    font-size: 12px;
+    font-weight: bold;
   }
 }
 

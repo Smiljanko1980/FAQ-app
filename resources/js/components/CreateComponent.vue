@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     addPost() {
-      //let uri = "http://127.0.0.1:8000/api/post/create";
       this.axios.post('/api/post/create', this.post).then(response => {
         this.$router.push({ name: "posts" });
       });

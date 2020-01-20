@@ -1948,14 +1948,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "App",
   data: function data() {
     return {
-      mode: "light",
-      user: null,
-      loading: false,
-      initiated: false
-      /* req: axios.create({
-          baseUrl: BASE_URL
-      }) */
-
+      mode: "light"
     };
   },
   components: {
@@ -2016,7 +2009,6 @@ __webpack_require__.r(__webpack_exports__);
     addPost: function addPost() {
       var _this = this;
 
-      //let uri = "http://127.0.0.1:8000/api/post/create";
       this.axios.post('/api/post/create', this.post).then(function (response) {
         _this.$router.push({
           name: "posts"
@@ -2073,7 +2065,6 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    //let uri = `http://vuelaravelcrud.test/api/post/edit/${this.$route.params.id}`;
     this.axios.get("/api/post/edit/".concat(this.$route.params.id)).then(function (response) {
       _this.post = response.data;
     });
@@ -2082,7 +2073,6 @@ __webpack_require__.r(__webpack_exports__);
     updatePost: function updatePost() {
       var _this2 = this;
 
-      //let uri = `http://vuelaravelcrud.test/api/post/update/${this.$route.params.id}`;
       this.axios.post("/api/post/update/".concat(this.$route.params.id), this.post).then(function (response) {
         _this2.$router.push({
           name: 'posts'
@@ -2138,20 +2128,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      /*
-      this.axios.post("auth/logout", { baseURL: BASE_URL }).then(() => {
-        this.app.user = null;
-        this.$router.push("/login");
-      }); */
       localStorage.removeItem("usertoken");
     }
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    _auth_EventBus__WEBPACK_IMPORTED_MODULE_1__["default"].$on("logged-in", function (status) {
-      _this.auth = status;
-    });
   }
 });
 
@@ -2403,7 +2381,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
- //import EventBus from "./EventBus";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2430,11 +2407,6 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.emitMethod();
     }
-    /*
-    emitMethod() {
-    EventBus.$emit("logged-in", "loggedin");
-    } */
-
   }
 });
 
@@ -2515,7 +2487,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _EventBus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventBus */ "./resources/js/components/auth/EventBus.vue");
 //
 //
 //
@@ -2572,7 +2543,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -38306,7 +38276,7 @@ var render = function() {
       "div",
       { staticClass: "home-container" },
       [
-        _c("h1", [_vm._v("Check out all the FAQS")]),
+        _c("h1", [_vm._v("Check all FAQS")]),
         _vm._v(" "),
         _c(
           "router-link",
