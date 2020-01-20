@@ -11577,6 +11577,14 @@ input:checked + .toggler::before {
   padding: 0;
 }
 
+.v--modal-box.v--modal {
+  padding: 25px !important;
+}
+
+p.redirect-auth {
+  padding-top: 20px;
+}
+
 @media screen and (max-width: 1020px) {
   /* Large Desktop */
 }
