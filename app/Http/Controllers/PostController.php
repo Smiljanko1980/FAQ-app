@@ -15,7 +15,7 @@ class PostController extends Controller
       $post = new Post([
         'title' => $request->get('title'),
         'body' => $request->get('body'),
-        'open' => FALSE
+        'open' => false
       ]);
 
       $post->save();

@@ -60,6 +60,7 @@ export default {
     };
   },
   created() {
+    //let uri = '127.0.0.1/api/posts';
     this.AddPost();
 
 
@@ -71,7 +72,8 @@ export default {
       .then(response => (this.posts = response.data.posts));
     },
     deletePost(id) {
-      this.axios.delete(`/api/post/delete/${id}`).then(response => {
+      let uri = `http://127.0.0.1:8000/api/post/delete/${id}`;
+      this.axios.delete(uri).then(response => {
         this.posts.splice(this.posts.indexOf(id), 1);
         this.AddPost();
       });
