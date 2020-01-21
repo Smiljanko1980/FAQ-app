@@ -55,9 +55,9 @@ const routes = [
     },
     /*AUTH COMPONENTS*/
 /*     {
-        name: "Login",
+        name: "modalLogin",
         path: "/login",
-        component: Login
+        component: modalLogin
     },
     {
         name: "Register",

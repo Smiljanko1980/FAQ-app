@@ -2118,6 +2118,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2434,7 +2435,9 @@ __webpack_require__.r(__webpack_exports__);
         email: email,
         password: password
       }).then(function () {
-        _this.$router.push('/');
+        _this.$router.push({
+          name: 'home'
+        });
 
         location.reload();
       });
@@ -2561,7 +2564,8 @@ __webpack_require__.r(__webpack_exports__);
         is_admin: this.is_admin
       };
       this.$store.dispatch("register", data).then(function () {
-        _this.$router.push("/");
+        //this.$router.push("/");
+        _this.showLogin();
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -38216,6 +38220,8 @@ var render = function() {
   return _c(
     "header",
     [
+      _c("span", { staticClass: "toggle-title" }, [_vm._v("Switch Theme:")]),
+      _vm._v(" "),
       _c("Toggle", {
         attrs: { mode: _vm.mode },
         on: {
@@ -55262,9 +55268,9 @@ var routes = [{
 /*AUTH COMPONENTS*/
 
 /*     {
-        name: "Login",
+        name: "modalLogin",
         path: "/login",
-        component: Login
+        component: modalLogin
     },
     {
         name: "Register",

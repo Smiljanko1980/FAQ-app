@@ -81,7 +81,7 @@ export default {
         const email = this.email
         const password = this.password
         this.$store.dispatch('login', { email, password }).then(() => {
-            this.$router.push('/');
+            this.$router.push({ name: 'home'});
             location.reload();
         })
       }

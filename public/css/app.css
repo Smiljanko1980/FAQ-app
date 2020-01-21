@@ -11585,6 +11585,22 @@ p.redirect-auth {
   padding-top: 20px;
 }
 
+nav .nav-link a.nav-link {
+  cursor: pointer;
+}
+
+.nav-link .v--modal-overlay {
+  position: fixed;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+  opacity: 1;
+}
+
 @media screen and (max-width: 1020px) {
   /* Large Desktop */
 }
