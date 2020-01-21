@@ -2010,7 +2010,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.axios.post('/api/post/create', this.post).then(function (response) {
-        _this.$router.push('/home');
+        _this.$router.push({
+          name: 'home'
+        });
       });
     }
   }
@@ -2198,6 +2200,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.AddPost();
+  },
+  computed: {
+    isLoggedIn: function isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    }
   },
   methods: {
     AddPost: function AddPost() {
@@ -2431,7 +2438,6 @@ __webpack_require__.r(__webpack_exports__);
 
         location.reload();
       });
-      browser.reload();
     }
   }
 });
@@ -38283,11 +38289,16 @@ var render = function() {
       [
         _c("h1", [_vm._v("Check all FAQS")]),
         _vm._v(" "),
-        _c(
-          "router-link",
-          { staticClass: "btn btn-primary", attrs: { to: { name: "create" } } },
-          [_vm._v("Create Post")]
-        ),
+        _vm.isLoggedIn
+          ? _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { to: { name: "create" } }
+              },
+              [_vm._v("Create Post")]
+            )
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "div",
@@ -38317,30 +38328,34 @@ var render = function() {
                       ),
                       _c("hr"),
                       _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: {
-                            to: { name: "edit", params: { id: post.id } }
-                          }
-                        },
-                        [_vm._v("Edit")]
-                      ),
+                      _vm.isLoggedIn
+                        ? _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: {
+                                to: { name: "edit", params: { id: post.id } }
+                              }
+                            },
+                            [_vm._v("Edit")]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger",
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.deletePost(post.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      )
+                      _vm.isLoggedIn
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.deletePost(post.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        : _vm._e()
                     ],
                     1
                   )

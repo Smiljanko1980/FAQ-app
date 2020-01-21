@@ -84,7 +84,6 @@ export default {
             this.$router.push('/');
             location.reload();
         })
-        browser.reload();
       }
   }
 };

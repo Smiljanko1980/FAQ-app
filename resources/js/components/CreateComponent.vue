@@ -31,7 +31,7 @@ export default {
   methods: {
     addPost() {
       this.axios.post('/api/post/create', this.post).then(response => {
-        this.$router.push('/home');
+        this.$router.push({ name: 'home'});
       });
     }
   }

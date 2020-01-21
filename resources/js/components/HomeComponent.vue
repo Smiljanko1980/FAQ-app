@@ -3,17 +3,17 @@
   <div>
     <div class="home-container">
       <h1 >Check all FAQS</h1>
-      <router-link :to="{ name: 'create' }" class="btn btn-primary">Create Post</router-link>
+      <router-link v-if="isLoggedIn" :to="{ name: 'create' }" class="btn btn-primary">Create Post</router-link>
       <div class="accordions">
         <dl v-for="post in posts" :key="post.id">
           <dt class="question" v-on:click="post.open = !post.open">
             <strong>{{ post.title }}</strong>
           </dt>
-          <dd class="answer" v-if="!post.open">
+          <dd class="answer" v-if="!post.open" >
             {{ post.body }}
             <hr />
-            <router-link :to="{name: 'edit', params: { id: post.id }}" class="btn btn-primary">Edit</router-link>
-            <button class="btn btn-danger" @click.prevent="deletePost(post.id)">Delete</button>
+            <router-link v-if="isLoggedIn"  :to="{name: 'edit', params: { id: post.id }}" class="btn btn-primary">Edit</router-link>
+            <button v-if="isLoggedIn"  class="btn btn-danger" @click.prevent="deletePost(post.id)">Delete</button>
           </dd>
         </dl>
       </div>
@@ -30,6 +30,11 @@ export default {
   },
   created() {
     this.AddPost();
+  },
+   computed: {
+    isLoggedIn: function() {
+      return this.$store.getters.isLoggedIn;
+    }
   },
   methods: {
     AddPost() {
