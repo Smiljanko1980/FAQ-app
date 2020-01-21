@@ -1,7 +1,7 @@
 <template>
   <header>
     <!------Toggle------>
-    <span class="toggle-title">Switch Theme:</span>
+
     <Toggle :mode="mode" @toggle="$emit('toggle')"></Toggle>
     <nav>
       <router-link to="/" class="nav-link">FAQ</router-link>

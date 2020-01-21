@@ -2074,7 +2074,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.axios.post("/api/post/update/".concat(this.$route.params.id), this.post).then(function (response) {
-        _this2.$router.push('/home');
+        _this2.$router.push({
+          name: 'home'
+        });
       });
     }
   }
@@ -2238,6 +2240,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38220,8 +38228,6 @@ var render = function() {
   return _c(
     "header",
     [
-      _c("span", { staticClass: "toggle-title" }, [_vm._v("Switch Theme:")]),
-      _vm._v(" "),
       _c("Toggle", {
         attrs: { mode: _vm.mode },
         on: {
@@ -38397,19 +38403,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "toggle-wrapper" }, [
-    _c("label", { staticClass: "toggle" }, [
-      _c("input", {
-        attrs: { type: "checkbox" },
-        domProps: { checked: _vm.mode === "dark" ? "checked" : false },
-        on: {
-          change: function($event) {
-            return _vm.$emit("toggle")
+  return _c("div", [
+    _c("span", { staticClass: "toggle-title" }, [_vm._v("Switch Theme")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "toggle-wrapper" }, [
+      _c("label", { staticClass: "toggle" }, [
+        _c("input", {
+          attrs: { type: "checkbox" },
+          domProps: { checked: _vm.mode === "dark" ? "checked" : false },
+          on: {
+            change: function($event) {
+              return _vm.$emit("toggle")
+            }
           }
-        }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "toggler round" })
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "toggler round" })
+      ])
     ])
   ])
 }
