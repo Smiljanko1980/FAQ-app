@@ -1,6 +1,6 @@
 <template>
   <header>
-    <!------Toggle------>
+     <!------Toggle------>
 
     <Toggle :mode="mode" @toggle="$emit('toggle')"></Toggle>
     <nav>

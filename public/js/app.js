@@ -2195,35 +2195,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      posts: {}
+      posts: {},
+      search: ""
     };
   },
   created: function created() {
     this.AddPost();
   },
   computed: {
+    filteredPosts: function filteredPosts() {
+      var _this = this;
+
+      if (this.search) {
+        return this.posts.filter(function (item) {
+          return _this.search.toLowerCase().split(" ").every(function (v) {
+            return item.title.toLowerCase().includes(v);
+          });
+        });
+      } else {
+        return this.posts;
+        console.log(this.posts);
+      }
+    },
     isLoggedIn: function isLoggedIn() {
       return this.$store.getters.isLoggedIn;
     }
   },
   methods: {
     AddPost: function AddPost() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("/api/posts").then(function (response) {
-        return _this.posts = response.data.posts;
+        return _this2.posts = response.data.posts;
       });
     },
     deletePost: function deletePost(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.axios["delete"]("/api/post/delete/".concat(id)).then(function (response) {
-        _this2.posts.splice(_this2.posts.indexOf(id), 1);
+        _this3.posts.splice(_this3.posts.indexOf(id), 1);
 
-        _this2.AddPost();
+        _this3.AddPost();
       });
     }
   }
@@ -2240,6 +2268,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -2256,10 +2285,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["mode"]
+  props: ["mode"],
+  data: function data() {
+    return {};
+  },
+  computed: {},
+  methods: {}
 });
 
 /***/ }),
@@ -38312,10 +38345,36 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
+        _c("div", { staticClass: "search-wrapper" }, [
+          _c("label", [_vm._v("Search title:")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Search for question.." },
+            domProps: { value: _vm.search },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           { staticClass: "accordions" },
-          _vm._l(_vm.posts, function(post) {
+          _vm._l(_vm.filteredPosts, function(post) {
             return _c("dl", { key: post.id }, [
               _c(
                 "dt",
@@ -55995,7 +56054,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     token: localStorage.getItem("token") || '',
     user: {},
     post: {},
-    posts: []
+    posts: [],
+    themeMode: 'black'
   },
   mutations: {
     auth_request: function auth_request(state) {
@@ -56018,6 +56078,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     GET_POSTS: function GET_POSTS(state, posts) {
       state.posts = posts;
+    },
+    setThemeColor: function setThemeColor(state, mode) {
+      state.themeMode = mode;
     }
   },
   actions: {
@@ -56101,6 +56164,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     authStatus: function authStatus(state) {
       return state.status;
+    },
+    themeMode: function themeMode(state) {
+      return state.themeMode;
     }
   }
 }));

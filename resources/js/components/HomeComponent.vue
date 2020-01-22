@@ -2,18 +2,31 @@
 <template>
   <div>
     <div class="home-container">
-      <h1 >Check all FAQS</h1>
+      <h1>Check all FAQS</h1>
       <router-link v-if="isLoggedIn" :to="{ name: 'create' }" class="btn btn-primary">Create Post</router-link>
+      <div class="search-wrapper">
+          <label>Search title:</label>
+        <input class="form-control" type="text" v-model="search" placeholder="Search for question.." />
+
+      </div>
       <div class="accordions">
-        <dl v-for="post in posts" :key="post.id">
+        <dl v-for="post in filteredPosts" :key="post.id">
           <dt class="question" v-on:click="post.open = !post.open">
             <strong>{{ post.title }}</strong>
           </dt>
-          <dd class="answer" v-if="!post.open" >
+          <dd class="answer" v-if="!post.open">
             {{ post.body }}
             <hr />
-            <router-link v-if="isLoggedIn"  :to="{name: 'edit', params: { id: post.id }}" class="btn btn-primary">Edit</router-link>
-            <button v-if="isLoggedIn"  class="btn btn-danger" @click.prevent="deletePost(post.id)">Delete</button>
+            <router-link
+              v-if="isLoggedIn"
+              :to="{name: 'edit', params: { id: post.id }}"
+              class="btn btn-primary"
+            >Edit</router-link>
+            <button
+              v-if="isLoggedIn"
+              class="btn btn-danger"
+              @click.prevent="deletePost(post.id)"
+            >Delete</button>
           </dd>
         </dl>
       </div>
@@ -25,13 +38,27 @@
 export default {
   data() {
     return {
-      posts: {}
+      posts: {},
+      search: ""
     };
   },
   created() {
     this.AddPost();
   },
-   computed: {
+  computed: {
+    filteredPosts() {
+      if (this.search) {
+        return this.posts.filter(item => {
+          return this.search
+            .toLowerCase()
+            .split(" ")
+            .every(v => item.title.toLowerCase().includes(v));
+        });
+      } else {
+        return this.posts;
+        console.log(this.posts)
+      }
+    },
     isLoggedIn: function() {
       return this.$store.getters.isLoggedIn;
     }

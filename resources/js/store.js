@@ -4,13 +4,15 @@ import axios from "axios";
 
 Vue.use(Vuex);
 
+
 export default new Vuex.Store({
     state: {
         status: '',
         token: localStorage.getItem("token") || '',
         user: {},
         post: {},
-        posts: []
+        posts: [],
+        themeMode:'black'
     },
     mutations: {
         auth_request(state) {
@@ -33,6 +35,9 @@ export default new Vuex.Store({
         },
         GET_POSTS(state, posts) {
             state.posts = posts;
+        },
+        setThemeColor(state, mode){
+            state.themeMode = mode;
         }
     },
     actions: {
@@ -100,6 +105,7 @@ export default new Vuex.Store({
     },
     getters: {
         isLoggedIn: state => state.token,
-        authStatus: state => state.status
+        authStatus: state => state.status,
+        themeMode: state => state.themeMode
     }
 });
