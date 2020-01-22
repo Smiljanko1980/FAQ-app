@@ -181,6 +181,14 @@ input:checked + .toggler::before {
 .slide-fade-leave-to {
     opacity: 0;
 }
+.search-wrapper{
+    margin-top: 10px;
+}
+#centered{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /******************  END ACCORDION  ********************/
 .home-container {

@@ -2208,6 +2208,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -38332,21 +38333,21 @@ var render = function() {
       "div",
       { staticClass: "home-container" },
       [
-        _c("h1", [_vm._v("Check all FAQS")]),
+        _c("h1", { attrs: { id: "centered" } }, [_vm._v("Check all FAQS")]),
         _vm._v(" "),
         _vm.isLoggedIn
           ? _c(
               "router-link",
               {
                 staticClass: "btn btn-primary",
-                attrs: { to: { name: "create" } }
+                attrs: { id: "centered", to: { name: "create" } }
               },
-              [_vm._v("Create Post")]
+              [_vm._v("Create FAQ")]
             )
           : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "search-wrapper" }, [
-          _c("label", [_vm._v("Search title:")]),
+          _c("h4", [_vm._v("Search title:")]),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -38368,7 +38369,9 @@ var render = function() {
                 _vm.search = $event.target.value
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("hr")
         ]),
         _vm._v(" "),
         _c(

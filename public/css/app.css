@@ -11567,6 +11567,19 @@ input:checked + .toggler::before {
   opacity: 0;
 }
 
+.search-wrapper {
+  margin-top: 10px;
+}
+
+#centered {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
 /******************  END ACCORDION  ********************/
 
 .home-container {

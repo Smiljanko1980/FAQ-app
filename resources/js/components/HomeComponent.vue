@@ -2,12 +2,13 @@
 <template>
   <div>
     <div class="home-container">
-      <h1>Check all FAQS</h1>
-      <router-link v-if="isLoggedIn" :to="{ name: 'create' }" class="btn btn-primary">Create Post</router-link>
-      <div class="search-wrapper">
-          <label>Search title:</label>
-        <input class="form-control" type="text" v-model="search" placeholder="Search for question.." />
+      <h1 id="centered">Check all FAQS</h1>
+      <router-link id="centered" v-if="isLoggedIn" :to="{ name: 'create' }" class="btn btn-primary">Create FAQ</router-link>
 
+      <div class="search-wrapper">
+          <h4>Search title:</h4>
+        <input class="form-control" type="text" v-model="search" placeholder="Search for question.." />
+    <hr/>
       </div>
       <div class="accordions">
         <dl v-for="post in filteredPosts" :key="post.id">
