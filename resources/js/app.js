@@ -1,109 +1,33 @@
-// app.js
+require('./bootstrap');
 
-require("./bootstrap");
-window.Vue = require("vue");
+import 'es6-promise/auto'
+import axios from 'axios'
+import Vue from 'vue'
+import VueAuth from '@websanova/vue-auth'
+import VueAxios from 'vue-axios'
+import VueRouter from 'vue-router'
+import Index from './Index'
+import auth from '../auth.js'
+import router from '../router.js'
 
-import VueRouter from "vue-router";
-Vue.use(VueRouter);
+// Set Vue globally
+window.Vue = Vue
 
-import VueAxios from "vue-axios";
-import axios from "axios";
-import App from "./App.vue";
+// Set Vue router
+Vue.router = router
+Vue.use(VueRouter)
 
-
-import VModal from 'vue-js-modal';
-
-
-Vue.use(VModal);
-
-/*Modal*/
-
-
-
-/*AXIOS + STORE*/
-
-Vue.use(VueAxios, axios);
-import store from "./store";
+// Set Vue authentication
+Vue.use(VueAxios, axios)
 
 
+axios.defaults.baseURL = `http://127.0.0.1:8000/api`
 
-/*Components - routes*/
-import HomeComponent from "./components/HomeComponent.vue";
-import CreateComponent from "./components/CreateComponent.vue";
-import EditComponent from "./components/EditComponent.vue";
-/*import IndexComponent from './components/IndexComponent.vue';
-import Login from "./components/auth/Login.vue";
-import Register from "./components/auth/Register.vue"; */
-import Profile from "./components/auth/Profile.vue";
+Vue.use(VueAuth, auth)
 
-const routes = [
-    {
-        name: "home",
-        path: "/",
-        component: HomeComponent,
-    },
-    {
-        name: "create",
-        path: "/create",
-        component: CreateComponent,
-
-    },
-    {
-        name: "edit",
-        path: "/edit/:id",
-        component: EditComponent
-    },
-    /*AUTH COMPONENTS*/
-/*     {
-        name: "modalLogin",
-        path: "/login",
-        component: modalLogin
-    },
-    {
-        name: "Register",
-        path: "/register",
-        component: Register
-    }, */
-    {
-        name: "Profile",
-        path: "/profile",
-        component: Profile,
-
-    }
-];
-
-
-
-const router = new VueRouter({
-    mode: "history",
-    routes
+// Load Index
+Vue.component('index', Index)
+const app = new Vue({
+  el: '#app',
+  router
 });
-
-router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (store.getters.isLoggedIn) {
-            next();
-            return;
-        }
-        next("/home");
-    } else {
-        next();
-    }
-});
-
-
-const token = localStorage.getItem("token");
-if (token) {
-    Vue.prototype.$http.defaults.headers.common["Authorization"] = token;
-}
-Vue.config.productionTip = false;
-
-const app = new Vue(
-    Vue.util.extend(
-        {
-            router,
-            store
-        },
-        App
-    )
-).$mount("#app");
